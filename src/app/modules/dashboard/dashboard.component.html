@@ -109,7 +109,7 @@
                                 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between"
                                     style="padding-left: 10px;padding-right: 10px;">
                                     <div class="status">
-                                        <span class="status-container active-status">online</span>
+                                        <span class="status-container active-status" [ngClass]="{'active-status':server.server_status == 'online','offline-status':server.server_status == 'offline'}">{{server.server_status | lowercase}}</span>
                                     </div>
                                     <div fxLayout="row" fxLayoutGap="10px">
                                         <button mat-button color="warn">Delete</button>

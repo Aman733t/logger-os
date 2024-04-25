@@ -16,57 +16,32 @@ export class DashboardComponent {
       server_name:'Live Server 1',
       server_ip:'XXX.XXX.XXX.XXX',
       server_url:'',
-      server_description:'dashboard server'
+      server_description:'dashboard server',
+      server_status:'online',
     },{
       server_name:'Live Server 2',
       server_ip:'XXX.XXX.XXX.XXX',
       server_url:'',
-      server_description:''
+      server_description:'',
+      server_status:'offline'
     },{
       server_name:'Stage Server 1',
       server_ip:'XXX.XXX.XXX.XXX',
       server_url:'',
-      server_description:''
+      server_description:'',
+      server_status:'online'
     },{
       server_name:'Stage Server 2',
       server_ip:'XXX.XXX.XXX.XXX',
       server_url:'',
-      server_description:''
+      server_description:'',
+      server_status:'online'
     },{
       server_name:'Stage Server 3',
       server_ip:'XXX.XXX.XXX.XXX',
       server_url:'',
-      server_description:''
-    },{
-      server_name:'Stage Server 4',
-      server_ip:'XXX.XXX.XXX.XXX',
-      server_url:'',
-      server_description:''
-    },{
-      server_name:'Stage Server 5',
-      server_ip:'XXX.XXX.XXX.XXX',
-      server_url:'',
-      server_description:''
-    },{
-      server_name:'Stage Server 6',
-      server_ip:'XXX.XXX.XXX.XXX',
-      server_url:'',
-      server_description:''
-    },{
-      server_name:'Stage Server 7',
-      server_ip:'XXX.XXX.XXX.XXX',
-      server_url:'',
-      server_description:''
-    },{
-      server_name:'Stage Server 8',
-      server_ip:'XXX.XXX.XXX.XXX',
-      server_url:'',
-      server_description:''
-    },{
-      server_name:'Stage Server 9',
-      server_ip:'XXX.XXX.XXX.XXX',
-      server_url:'',
-      server_description:''
+      server_description:'',
+      server_status:'online'
     }
   ]
 

@@ -66,7 +66,7 @@ mat-card-subtitle{
 
 .status-container{
     padding: 4px 16px;
-    border-radius: 3px;
+    border-radius: 0.4rem;
     font-size: 14px;
     line-height: 20px;
     font-weight: 600;
@@ -75,6 +75,11 @@ mat-card-subtitle{
 .active-status{
     color: rgb(255 255 255);
     background: rgb(57 139 0);
+}
+
+.offline-status{
+    color: rgb(255 255 255);
+    background: rgb(225 38 31);
 }
 
 .server-info{
