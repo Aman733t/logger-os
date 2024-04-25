@@ -23,9 +23,9 @@
     <mat-drawer-content>
         <div class="main">
             <div fxLayout="column" fxLayoutGap="10px">
-                <div class="header-title">
+                <!-- <div class="header-title">
                     <span>Server's List</span>
-                </div>
+                </div> -->
                 <div fxLayout="row wrap" fxLayoutGap="10px grid">
                     <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let server of serversList">
                         <mat-card class="example-card">
@@ -113,7 +113,7 @@
                                     </div>
                                     <div fxLayout="row" fxLayoutGap="10px">
                                         <button mat-button color="warn">Delete</button>
-                                        <button mat-raised-button color="connect">Connect</button>
+                                        <button mat-raised-button color="connect" (click)="connectToServer(server)">Connect</button>
                                     </div>
                                 </div>
 

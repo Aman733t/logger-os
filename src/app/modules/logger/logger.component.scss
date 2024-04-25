@@ -1,0 +1,88 @@
+.main{
+    padding: 20px;
+}
+
+.sidenav-25 {
+    width: 50%;
+    position: fixed;
+    top: 35px;
+}
+
+div.scroll {
+    max-height: 380px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+
+.scroll {
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+
+.mat-dark {
+    background-color: #0d0d0d;
+    color: #fff;
+}
+
+.mat-yellow{
+    background-color: #cca300;
+    color: #fff;
+}
+
+.mat-red{
+    background-color: #cc2500;
+    color: #fff;
+}
+
+
+.menu-button {
+    z-index: 99999;
+    border-radius: 100% !important;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+}
+
+mat-card{
+    border-radius: 1rem;
+
+    button{
+        border-radius: 0.5rem;
+    }
+    .mat-connect {
+        background-color: #0d0d0d;
+        color: #fff;
+    }
+
+    .mat-green{
+        background-color: #0c8b00;
+        color: #fff;
+    }
+    
+    .mat-red{
+        background-color: #cc2500;
+        color: #fff;
+    }
+
+    .mat-orange{
+        background-color: #FFA500;
+        color: #fff;
+    }
+
+        
+}
+
+mat-card-subtitle{
+    font-size: 12px;
+}
+
+.header-title{
+    span{
+        font-size: 24px;
+        font-weight: 500;
+        font-family:sans-serif
+    }
+}

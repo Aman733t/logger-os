@@ -1,1 +1,59 @@
-<p>logger works!</p>
+<mat-drawer-container class="filter-container" [hasBackdrop]="false">
+    <mat-drawer #drawer class="sidenav-25" mode="over" position="end">
+        <div fxLayout="column" class="main" fxLayout.xs="column" fxLayoutGap="2px">
+            <div class="side_header">
+                <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between">
+                    <div class="side_heading">
+                        <h4>Update Record</h4>
+                    </div>
+
+                    <button mat-icon-button (click)="drawer.toggle()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="side_main">
+                <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="10px">
+
+                </div>
+                <button mat-raised-button color="success">Save Info</button>
+            </div>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="main">
+            <div fxLayout="row" fxLayoutGap="10px">
+                <div fxFlex="30%">
+                    <div fxLayout="column" fxLayoutGap="10px">
+                        <mat-card>
+                            <mat-card-content>
+                                <div class="scroll">
+                                    <mat-list>
+                                        <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
+                                            <mat-list-item>Item {{i}}</mat-list-item>
+                                            <mat-divider></mat-divider>
+                                        </div>
+                                    </mat-list>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-card>
+                            <mat-card-content >
+                                <mat-form-field appearance="outline" style="width: 100%;">
+                                    <mat-label>Enter Command</mat-label>
+                                    <input matInput placeholder="command" autocomplete="off">
+                                </mat-form-field>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+                <div fxFlex="70%">
+                    <mat-card style="height: 85vh;">
+                        <mat-card-content></mat-card-content>
+                    </mat-card>
+                </div>
+
+            </div>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
