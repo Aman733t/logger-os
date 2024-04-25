@@ -1,0 +1,44 @@
+<div class="main-container">
+    <div class="toolbarshadow mat-elevation-z8">
+        <mat-toolbar class="main-toolbar">
+            <div>
+                <span id="sf-title">Logger
+                    <span id="version-style">os</span>
+                </span>
+            </div>
+            <span class="main-fill-remaining-space"></span>
+            <button mat-icon-button>
+                <mat-icon matBadgeColor="warn" matBadgeSize="small">notifications</mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu list">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>account_circle</mat-icon>
+                <span>Welcome: {{username | titlecase}}</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item>
+                <mat-icon>help</mat-icon>
+                <span>About</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </div>
+
+    <mat-sidenav-container class="main-sidenav-container" style="background-color: #160f16;" autosize
+        style="height: 309%;">
+        <mat-sidenav-content class="main-sidenav-content">
+            <div class="main-container">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+</div>

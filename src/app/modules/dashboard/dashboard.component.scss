@@ -1,0 +1,80 @@
+.main{
+    padding: 20px;
+}
+
+.sidenav-25 {
+    width: 50%;
+    position: fixed;
+    top: 35px;
+}
+
+div.scroll {
+    max-height: 440px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+
+.scroll {
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+
+.mat-dark {
+    background-color: #0d0d0d;
+    color: #fff;
+}
+
+.menu-button {
+    z-index: 99999;
+    border-radius: 100% !important;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+}
+
+mat-card{
+    border-radius: 1rem;
+
+    button{
+        border-radius: 0.5rem;
+    }
+    .mat-connect {
+        background-color: #0d0d0d;
+        color: #fff;
+    }
+}
+
+.header-title{
+    span{
+        font-size: 24px;
+        font-weight: 500;
+        font-family:sans-serif
+    }
+}
+
+.status{
+    align-content:center;
+}
+
+
+.status-container{
+    padding: 4px 16px;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.active-status{
+    color: rgb(255 255 255);
+    background: rgb(57 139 0);
+}
+
+.server-info{
+    span{
+        font-size: 12px;
+    }
+}
