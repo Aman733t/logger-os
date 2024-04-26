@@ -75,6 +75,24 @@ mat-card{
         
 }
 
+.status-container{
+    padding: 4px 16px;
+    border-radius: 0.4rem;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+}
+
+.active-status{
+    color: rgb(255 255 255);
+    background: rgb(57 139 0);
+}
+ 
+.offline-status{
+    color: rgb(255 255 255);
+    background: rgb(216, 1, 1);
+}
+
 mat-card-subtitle{
     font-size: 12px;
 }
@@ -84,5 +102,13 @@ mat-card-subtitle{
         font-size: 24px;
         font-weight: 500;
         font-family:sans-serif
+    }
+}
+
+.heading{
+    padding-top: 20px;
+    span{
+        font-size: 18px;
+        font-weight: 500;
     }
 }

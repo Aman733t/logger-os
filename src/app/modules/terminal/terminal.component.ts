@@ -39,23 +39,23 @@ export class TerminalComponent {
   }
 
   initSHELL() {
+    if(sessionStorage.getItem('log_'+this.queryParams.id)){
+      this.offset = 1;
+      let info:any = sessionStorage.getItem('log_'+this.queryParams.id);
+      let instance = JSON.parse(info);
       let attID = "terminal_"+this.queryParams.id;
-      console.log(document.getElementById(attID));
       this.term.open(document.getElementById(attID));
       this.term.loadAddon(this.fitAddon);
       this.fitAddon.fit();
-      this.getLogger();
+      this.getLogger(instance);
+    }
   }
 
-  getLogger(){
-    this.api.getLogger({file_name:'logger-API-out-0.log',offset:this.offset}).subscribe((response:any)=>{
+  getLogger(instance:any){
+    this.api.getLogger({file_path:instance[this.queryParams.type],offset:this.offset}).subscribe((response:any)=>{
       if(response['log']){
-        const lines = response['log'].split('\n');
+        let lines = response['log'].split('\n');
         lines.forEach((line:any) => this.term.writeln(line));
-        // this.offset = response['chunk'];
-        setTimeout(()=>{
-          this.getLogger();
-        },2000)
       }
     })
   }

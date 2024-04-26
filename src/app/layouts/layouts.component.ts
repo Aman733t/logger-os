@@ -31,5 +31,10 @@ export class LayoutsComponent {
     });
   }
 
+  home(){
+    sessionStorage.clear();
+    this.router.navigate(['/dashboard']);
+  }
+
 
 }

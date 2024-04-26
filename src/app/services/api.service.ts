@@ -39,6 +39,10 @@ export class ApiService {
     }
   }
 
+  getServices(){
+    return this.http.get(this.baseUrl+'getRunningServices');
+  }
+
   getLogger(log:any){
     return this.http.post(this.baseUrl+'getLogger',{log});
   }

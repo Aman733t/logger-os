@@ -22,40 +22,149 @@
     </mat-drawer>
     <mat-drawer-content>
         <div class="main">
-            <div fxLayout="row" fxLayoutGap="10px">
-                <div fxFlex="30%">
-                    <div fxLayout="column" fxLayoutGap="10px">
-                        <mat-card>
-                            <mat-card-content>
-                                <div class="scroll">
-                                    <mat-list>
-                                        <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
-                                            <mat-list-item>Item {{i}}</mat-list-item>
-                                            <mat-divider></mat-divider>
-                                        </div>
-                                    </mat-list>
-                                </div>
-                            </mat-card-content>
-                        </mat-card>
-                        <mat-card>
-                            <mat-card-content >
-                                <mat-form-field appearance="outline" style="width: 100%;">
-                                    <mat-label>Enter Command</mat-label>
-                                    <input matInput placeholder="command" autocomplete="off">
-                                </mat-form-field>
-                            </mat-card-content>
-                        </mat-card>
-                    </div>
-                </div>
-                <div fxFlex="70%">
-                    <mat-card style="height: 85vh;">
+            <div fxLayout="column" fxLayoutGap="10px">
+                <div>
+                    <mat-card>
+                        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between"
+                            style="padding-left: 20px;padding-right: 20px;">
+                            <div class="heading">
+                                <span>Process List's</span>
+                            </div>
+                            <div style="padding:10px 5px 10px 10px">
+                                <button mat-mini-fab color="dark" aria-label="refresh" (click)="getServices()">
+                                    <mat-icon>refresh</mat-icon>
+                                </button>
+                            </div>
+                        </div>
                         <mat-card-content>
-                            <button (click)="openTerminal()">Click</button>
+                            <table mat-table [dataSource]="dataSource">
+
+                                <ng-container matColumnDef="id">
+                                    <th mat-header-cell *matHeaderCellDef> id </th>
+                                    <td mat-cell *matCellDef="let element">{{element.id}}</td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="name">
+                                    <th mat-header-cell *matHeaderCellDef> name </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="namespace">
+                                    <th mat-header-cell *matHeaderCellDef> namespace </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.namespace}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="version">
+                                    <th mat-header-cell *matHeaderCellDef> version </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="mode">
+                                    <th mat-header-cell *matHeaderCellDef> mode </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.mode ? element.mode : '--'}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="pid">
+                                    <th mat-header-cell *matHeaderCellDef> pid </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.pid}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="uptime">
+                                    <th mat-header-cell *matHeaderCellDef> uptime </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.uptime}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="status">
+                                    <th mat-header-cell *matHeaderCellDef> status </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <span class="status-container"
+                                            [ngClass]="{'active-status':element.status == 'online','offline-status':element.status == 'stopped'}">{{element.status}}</span>
+                                    </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="cpu">
+                                    <th mat-header-cell *matHeaderCellDef> cpu </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.cpu}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="mem">
+                                    <th mat-header-cell *matHeaderCellDef> mem </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.mem}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="user">
+                                    <th mat-header-cell *matHeaderCellDef> user </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.user}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="watching">
+                                    <th mat-header-cell *matHeaderCellDef> watching </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.watching}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="action" sticky>
+                                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                                    <td mat-cell *matCellDef="let element">
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu list">
+                                            <mat-icon>more_vert</mat-icon>
+                                        </button>
+                                        <mat-menu #menu="matMenu">
+                                            <button mat-menu-item (click)="openTerminal(element,'out_log')">
+                                                <mat-icon>description</mat-icon>
+                                                <span>Out Log</span>
+                                            </button>
+                                            <button mat-menu-item (click)="openTerminal(element,'error_log')">
+                                                <mat-icon>error</mat-icon>
+                                                <span>Error Log</span>
+                                            </button>
+                                        </mat-menu>
+                                    </td>
+                                </ng-container>
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
                         </mat-card-content>
                     </mat-card>
                 </div>
-
             </div>
+
         </div>
     </mat-drawer-content>
 </mat-drawer-container>
+
+
+<!-- <div fxLayout="row" fxLayoutGap="10px">
+    <div fxFlex="30%">
+        <div fxLayout="column" fxLayoutGap="10px">
+            <mat-card>
+                <mat-card-content>
+                    <div class="scroll">
+                        <mat-list>
+                            <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
+                                <mat-list-item>Item {{i}}</mat-list-item>
+                                <mat-divider></mat-divider>
+                            </div>
+                        </mat-list>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-content>
+                    <mat-form-field appearance="outline" style="width: 100%;">
+                        <mat-label>Enter Command</mat-label>
+                        <input matInput placeholder="command" autocomplete="off">
+                    </mat-form-field>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div fxFlex="70%">
+        <mat-card style="height: 85vh;">
+            <mat-card-content>
+                <button>Click</button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div> -->
