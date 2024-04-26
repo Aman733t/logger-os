@@ -4,11 +4,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PackagesModule } from '../../libs/packages/packages.module';
 import { ApiService } from '../../services/api.service';
-
+import { TerminalComponent } from '../terminal/terminal.component';
 @Component({
   selector: 'app-logger',
   standalone: true,
-  imports: [PackagesModule],
+  imports: [PackagesModule,TerminalComponent],
   providers: [ApiService],
   templateUrl: './logger.component.html',
   styleUrl: './logger.component.scss'
@@ -28,6 +28,10 @@ export class LoggerComponent {
         this.router.navigate(['/']);
       }
     });
+  }
+
+  openTerminal(){
+    this.router.navigate(['/terminal'],{queryParams:{id:1}})
   }
 
 

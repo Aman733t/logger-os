@@ -4,6 +4,7 @@ import { LayoutsComponent } from './layouts/layouts.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { SettingsComponent } from './modules/settings/settings.component';
 import { LoggerComponent } from './modules/logger/logger.component';
+import { TerminalComponent } from './modules/terminal/terminal.component';
 
 export const routes: Routes = [
     {
@@ -25,6 +26,10 @@ export const routes: Routes = [
             {
                 path:'settings',
                 component:SettingsComponent
+            },
+            {
+                path:'terminal',
+                component:TerminalComponent
             }
         ]
     }
