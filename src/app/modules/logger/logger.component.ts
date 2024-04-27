@@ -36,22 +36,24 @@ export class LoggerComponent {
     this.api.getServices().subscribe((response:any)=>{
       let processArr:any = [];
       response.forEach((process:any)=>{
-        let serviceObj:any = {};
-        serviceObj['id'] = process['pm_id'];
-        serviceObj['name'] = process['name'];
-        serviceObj['namespace'] = process['pm2_env']['namespace'];
-        serviceObj['version'] = process['pm2_env']['version'];
-        serviceObj['mode'] = null;
-        serviceObj['pid'] = process['pid'];
-        serviceObj['uptime'] = process['pm2_env']['pm_uptime'];
-        serviceObj['status'] = process['pm2_env']['status'];
-        serviceObj['cpu'] = process['monit']['cpu']+'%';
-        serviceObj['mem'] = process['monit']['memory'];
-        serviceObj['user'] = process['pm2_env']['username'];
-        serviceObj['watching'] = process['pm2_env']['watch'];
-        serviceObj['out_log'] = process['pm2_env']['pm_out_log_path'];
-        serviceObj['error_log'] = process['pm2_env']['pm_err_log_path'];
-        processArr.push(serviceObj);
+        if(process['name'] != 'logger_API'){
+          let serviceObj:any = {};
+          serviceObj['id'] = process['pm_id'];
+          serviceObj['name'] = process['name'];
+          serviceObj['namespace'] = process['pm2_env']['namespace'];
+          serviceObj['version'] = process['pm2_env']['version'];
+          serviceObj['mode'] = null;
+          serviceObj['pid'] = process['pid'];
+          serviceObj['uptime'] = process['pm2_env']['pm_uptime'];
+          serviceObj['status'] = process['pm2_env']['status'];
+          serviceObj['cpu'] = process['monit']['cpu']+'%';
+          serviceObj['mem'] = process['monit']['memory'];
+          serviceObj['user'] = process['pm2_env']['username'];
+          serviceObj['watching'] = process['pm2_env']['watch'];
+          serviceObj['out_log'] = process['pm2_env']['pm_out_log_path'];
+          serviceObj['error_log'] = process['pm2_env']['pm_err_log_path'];
+          processArr.push(serviceObj);
+        }
       })
       this.dataSource = [...processArr]
       console.log(this.dataSource)

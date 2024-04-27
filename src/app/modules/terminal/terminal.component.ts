@@ -20,6 +20,7 @@ export class TerminalComponent {
   public term: any = new Terminal({ cursorBlink: true,rows:38,cols:100});
   public fitAddon: any = new FitAddon();
   public offset:any = 1;
+  public instance:any;
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private _snackBar: MatSnackBar, public dialog: MatDialog){
     
   }
@@ -42,18 +43,22 @@ export class TerminalComponent {
     if(sessionStorage.getItem('log_'+this.queryParams.id)){
       this.offset = 1;
       let info:any = sessionStorage.getItem('log_'+this.queryParams.id);
-      let instance = JSON.parse(info);
+      this.instance = JSON.parse(info);
       let attID = "terminal_"+this.queryParams.id;
       this.term.open(document.getElementById(attID));
       this.term.loadAddon(this.fitAddon);
       this.fitAddon.fit();
-      this.getLogger(instance);
+      this.getLogger();
+      this.term.onKey((keyPress:any)=>{
+        if(keyPress['key'] == '\r'){
+          this.term.writeln(keyPress['key'])
+        }
+      })
     }
   }
 
-  getLogger(instance:any){
-    this.api.getLogger({file_path:instance[this.queryParams.type],offset:this.offset}).subscribe((response:any)=>{
-      console.log(response);
+  getLogger(){
+    this.api.getLogger({file_path:this.instance[this.queryParams.type],offset:this.offset}).subscribe((response:any)=>{
       if(response['lines']){
         let lines = response['lines'].split('\n');
         lines.forEach((line:any) => this.term.writeln(line));
