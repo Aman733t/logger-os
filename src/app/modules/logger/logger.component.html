@@ -78,7 +78,7 @@
                                     <th mat-header-cell *matHeaderCellDef> STATUS </th>
                                     <td mat-cell *matCellDef="let element">
                                         <span class="status-container"
-                                            [ngClass]="{'active-status':element.status == 'online','offline-status':element.status == 'stopped'}">{{element.status}}</span>
+                                            [ngClass]="{'active-status':element.status == 'online','offline-status':element.status == 'stopped','error-status':element.status == 'errored'}">{{element.status | titlecase}}</span>
                                     </td>
                                 </ng-container>
 
@@ -89,7 +89,7 @@
 
                                 <ng-container matColumnDef="mem">
                                     <th mat-header-cell *matHeaderCellDef> MEM </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.mem}} </td>
+                                    <td mat-cell *matCellDef="let element"> {{bytesToSize(element.mem)}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="user">
@@ -116,6 +116,19 @@
                                             <button mat-menu-item (click)="openTerminal(element,'error_log')">
                                                 <mat-icon>error</mat-icon>
                                                 <span>Error Log</span>
+                                            </button>
+                                            <mat-divider></mat-divider>
+                                            <button mat-menu-item (click)="processAction(element,'reload')">
+                                                <mat-icon>autorenew</mat-icon>
+                                                <span>reload</span>
+                                            </button>
+                                            <button mat-menu-item (click)="processAction(element,'restart')">
+                                                <mat-icon>restart_alt</mat-icon>
+                                                <span>restart</span>
+                                            </button>
+                                            <button mat-menu-item (click)="processAction(element,'stop')">
+                                                <mat-icon>block</mat-icon>
+                                                <span>stop</span>
                                             </button>
                                         </mat-menu>
                                     </td>

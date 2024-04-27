@@ -26,10 +26,19 @@ export class LoggerComponent {
       if (Object.keys(params).length > 0) {
         this.queryParams = params;
         this.getServices();
+        this.refresh();
       } else {
         this.router.navigate(['/']);
       }
     });
+  }
+
+  refresh(){
+    this.api.refreshNeeded().subscribe((response) => {
+      setTimeout(() => {
+        this.getServices();
+      }, 200)
+    })
   }
 
   getServices(){
@@ -56,7 +65,6 @@ export class LoggerComponent {
         }
       })
       this.dataSource = [...processArr]
-      console.log(this.dataSource)
     })
   }
 
@@ -68,6 +76,34 @@ export class LoggerComponent {
     this.clearSession();
     sessionStorage.setItem(`log_${log.id}`,JSON.stringify(log))
     this.router.navigate(['/terminal'],{queryParams:{id:log.id,type:logType}})
+  }
+
+  processAction(process:any,action:any){
+    console.log(process);
+    console.log(action);
+    this.api.loggerAction(action,process.id).subscribe((response:any)=>{
+      console.log(response);
+    })
+  }
+
+  bytesToSize(bytes:any) {
+    let kilobyte = 1024
+    let megabyte = kilobyte * 1024
+    let gigabyte = megabyte * 1024
+    let terabyte = gigabyte * 1024
+    if ((bytes >= 0) && (bytes < kilobyte)) {
+      return bytes + 'b '
+    } else if ((bytes >= kilobyte) && (bytes < megabyte)) {
+      return (bytes / kilobyte).toFixed(2) + 'kb '
+    } else if ((bytes >= megabyte) && (bytes < gigabyte)) {
+      return (bytes / megabyte).toFixed(2) + 'mb '
+    } else if ((bytes >= gigabyte) && (bytes < terabyte)) {
+      return (bytes / gigabyte).toFixed(2) + 'gb '
+    } else if (bytes >= terabyte) {
+      return (bytes / terabyte).toFixed(2) + 'tb '
+    } else {
+      return bytes + 'b '
+    }
   }
 
 

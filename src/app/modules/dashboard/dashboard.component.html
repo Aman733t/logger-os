@@ -26,7 +26,16 @@
                 <!-- <div class="header-title">
                     <span>Server's List</span>
                 </div> -->
-                <div fxLayout="row wrap" fxLayoutGap="10px grid">
+                <div class="no-server" *ngIf="serversList.length == 0" fxLayoutAlign="center center">
+                    <div fxLayout="column" fxLayoutGap="10px">
+                        <img src="../../../assets/undraw_server_down.svg">
+                        <div class="no-server-title" fxLayoutAlign="center center">
+                            <span>No Server Connected..</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout="row wrap" fxLayoutGap="10px grid" *ngIf="serversList.length > 0">
                     <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let server of serversList">
                         <mat-card class="example-card">
                             <mat-card-header>

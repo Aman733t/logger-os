@@ -47,4 +47,10 @@ export class ApiService {
     return this.http.post(this.baseUrl+'getLogger',{log});
   }
 
+  loggerAction(action:any,id:any){
+    return this.http.post(this.baseUrl+'loggerAction',{'action':action,'id':id}).pipe(tap(()=>{
+      this._refreshNeeded.next();
+    }));
+  }
+
 }
