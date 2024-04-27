@@ -53,8 +53,9 @@ export class TerminalComponent {
 
   getLogger(instance:any){
     this.api.getLogger({file_path:instance[this.queryParams.type],offset:this.offset}).subscribe((response:any)=>{
-      if(response['log']){
-        let lines = response['log'].split('\n');
+      console.log(response);
+      if(response['lines']){
+        let lines = response['lines'].split('\n');
         lines.forEach((line:any) => this.term.writeln(line));
       }
     })

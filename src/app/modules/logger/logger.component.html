@@ -40,42 +40,42 @@
                             <table mat-table [dataSource]="dataSource">
 
                                 <ng-container matColumnDef="id">
-                                    <th mat-header-cell *matHeaderCellDef> id </th>
+                                    <th mat-header-cell *matHeaderCellDef> ID </th>
                                     <td mat-cell *matCellDef="let element">{{element.id}}</td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="name">
-                                    <th mat-header-cell *matHeaderCellDef> name </th>
+                                    <th mat-header-cell *matHeaderCellDef> NAME </th>
                                     <td mat-cell *matCellDef="let element"> {{element.name}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="namespace">
-                                    <th mat-header-cell *matHeaderCellDef> namespace </th>
+                                    <th mat-header-cell *matHeaderCellDef> NAMESPACE </th>
                                     <td mat-cell *matCellDef="let element"> {{element.namespace}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="version">
-                                    <th mat-header-cell *matHeaderCellDef> version </th>
+                                    <th mat-header-cell *matHeaderCellDef> VERSION </th>
                                     <td mat-cell *matCellDef="let element"> {{element.version}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="mode">
-                                    <th mat-header-cell *matHeaderCellDef> mode </th>
+                                    <th mat-header-cell *matHeaderCellDef> MODE </th>
                                     <td mat-cell *matCellDef="let element"> {{element.mode ? element.mode : '--'}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="pid">
-                                    <th mat-header-cell *matHeaderCellDef> pid </th>
+                                    <th mat-header-cell *matHeaderCellDef> PID </th>
                                     <td mat-cell *matCellDef="let element"> {{element.pid}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="uptime">
-                                    <th mat-header-cell *matHeaderCellDef> uptime </th>
+                                    <th mat-header-cell *matHeaderCellDef> UPTIME </th>
                                     <td mat-cell *matCellDef="let element"> {{element.uptime}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="status">
-                                    <th mat-header-cell *matHeaderCellDef> status </th>
+                                    <th mat-header-cell *matHeaderCellDef> STATUS </th>
                                     <td mat-cell *matCellDef="let element">
                                         <span class="status-container"
                                             [ngClass]="{'active-status':element.status == 'online','offline-status':element.status == 'stopped'}">{{element.status}}</span>
@@ -83,27 +83,27 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="cpu">
-                                    <th mat-header-cell *matHeaderCellDef> cpu </th>
+                                    <th mat-header-cell *matHeaderCellDef> CPU </th>
                                     <td mat-cell *matCellDef="let element"> {{element.cpu}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="mem">
-                                    <th mat-header-cell *matHeaderCellDef> mem </th>
+                                    <th mat-header-cell *matHeaderCellDef> MEM </th>
                                     <td mat-cell *matCellDef="let element"> {{element.mem}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="user">
-                                    <th mat-header-cell *matHeaderCellDef> user </th>
+                                    <th mat-header-cell *matHeaderCellDef> USER </th>
                                     <td mat-cell *matCellDef="let element"> {{element.user}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="watching">
-                                    <th mat-header-cell *matHeaderCellDef> watching </th>
+                                    <th mat-header-cell *matHeaderCellDef> WATCHING </th>
                                     <td mat-cell *matCellDef="let element"> {{element.watching}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="action" sticky>
-                                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                                    <th mat-header-cell *matHeaderCellDef> ACTION </th>
                                     <td mat-cell *matCellDef="let element">
                                         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu list">
                                             <mat-icon>more_vert</mat-icon>
