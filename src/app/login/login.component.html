@@ -1,1 +1,40 @@
-<p>login works!</p>
+<main>
+    <div class="center" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+
+        <!-- <div class="sf_logo">
+            <img src="../../assets/salesfactory-icon.svg" />
+        </div> -->
+
+        <div class="sf_text">
+            <h1>Logger</h1>
+        </div>
+
+        <div class="login_form">
+            <div fxLayoutAlign="center center" fxLayoutGap="10px">
+                <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="6px">
+                    <div fxLayout="column" fxLayoutAlign="space-between">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Enter Email</mat-label>
+                            <input matInput placeholder="example@xyz.com" autocomplete="off" [(ngModel)]="user_email">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Enter Password</mat-label>
+                            <input matInput type="{{pass_type}}" placeholder="Enter Password..." autocomplete="off" [(ngModel)]="user_password">
+                            <mat-icon matSuffix *ngIf="!show_password"
+                                (click)="showPassword('off')">visibility_off</mat-icon>
+                            <mat-icon matSuffix *ngIf="show_password" (click)="showPassword('on')">visibility</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+                        <div class="login_btn">
+                            <button mat-raised-button color="primary" *ngIf="!loader" (click)="login()">Login</button>
+                            <div class="loading" *ngIf="loader">
+                                <mat-spinner [diameter]="30"></mat-spinner>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

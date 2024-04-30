@@ -19,38 +19,38 @@ export class ApiService {
   getHeaders(){
     let headers:HttpHeaders = new HttpHeaders();
     headers = headers.append('authorization','magic '+this.getAuthToken());
-    headers = headers.append('sf-account-id',' '+this.getAccountId());    
     return headers;
   }
 
   getAuthToken(){
-    if(localStorage.getItem('sf_token')){
-      return localStorage.getItem('sf_token');
+    if(localStorage.getItem('logger_token')){
+      return localStorage.getItem('logger_token');
     }else {
       return null
     }
   }
 
-  getAccountId(){
-    if(localStorage.getItem('sf_account_id')){
-      return localStorage.getItem('sf_account_id');
-    }else {
-      return null
-    }
+  getHeartBeat(){
+    return this.http.get(this.baseUrl + 'getHeartBeat',{headers:this.getHeaders()});
+  }
+
+  getUserLogin(user_email:any,user_password:any){
+    return this.http.post(this.baseUrl + 'getUserLogin',{user_email:user_email,user_password:user_password})
   }
 
   getServices(){
-    return this.http.get(this.baseUrl+'getRunningServices');
+    return this.http.get(this.baseUrl+'getRunningServices',{headers:this.getHeaders()});
   }
 
   getLogger(log:any){
-    return this.http.post(this.baseUrl+'getLogger',{log});
+    return this.http.post(this.baseUrl+'getLogger',{log},{headers:this.getHeaders()});
   }
 
   loggerAction(action:any,id:any){
-    return this.http.post(this.baseUrl+'loggerAction',{'action':action,'id':id}).pipe(tap(()=>{
+    return this.http.post(this.baseUrl+'loggerAction',{'action':action,'id':id},{headers:this.getHeaders()}).pipe(tap(()=>{
       this._refreshNeeded.next();
     }));
   }
+  
 
 }

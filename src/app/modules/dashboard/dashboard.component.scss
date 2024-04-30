@@ -3,7 +3,7 @@
 }
 
 .sidenav-25 {
-    width: 50%;
+    width: 30%;
     position: fixed;
     top: 35px;
 }
@@ -45,6 +45,13 @@ mat-card{
         background-color: #0d0d0d;
         color: #fff;
     }
+}
+
+mat-drawer{
+    .mat-dark {
+        background-color: #0d0d0d;
+        color: #fff;
+    }   
 }
 
 mat-card-subtitle{

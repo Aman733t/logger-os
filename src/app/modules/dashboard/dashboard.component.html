@@ -4,9 +4,8 @@
             <div class="side_header">
                 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between">
                     <div class="side_heading">
-                        <h4>Update Record</h4>
+                        <h4>Add Server</h4>
                     </div>
-
                     <button mat-icon-button (click)="drawer.toggle()">
                         <mat-icon>close</mat-icon>
                     </button>
@@ -14,9 +13,40 @@
             </div>
             <div class="side_main">
                 <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="10px">
-
+                    <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="10px">
+                        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Server Name*</mat-label>
+                                <input matInput placeholder="Input Server Name" autocomplete="off"
+                                    [(ngModel)]="hostObj.server_name">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Server IP*</mat-label>
+                                <input matInput placeholder="Input Host Address" autocomplete="off"
+                                    [(ngModel)]="hostObj.server_ip">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Logger API URL*</mat-label>
+                                <input matInput placeholder="http://localhost:1337" autocomplete="off"
+                                    [(ngModel)]="hostObj.server_url">
+                            </mat-form-field>
+                        </div>
+                        <div class="submit_btn" fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-between" *ngIf="hostObj.server_url">
+                            <button mat-raised-button color="dark" *ngIf="!loader" (click)="saveInstance()">Save
+                                Instances</button>
+                            <div class="loading" *ngIf="loader" fxLayoutAlign="center">
+                                <mat-spinner [diameter]="30"></mat-spinner>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button mat-raised-button color="success">Save Info</button>
+                <!-- <div fxLayoutAlign="end end">
+                    <button mat-raised-button color="dark" (click)="saveInfo()">Save Info</button>
+                </div> -->
             </div>
         </div>
     </mat-drawer>
@@ -45,7 +75,8 @@
                             <mat-card-content>
                                 <div fxLayout="row" fxLayoutGap="10px" style="padding-top: 10px;padding-bottom: 10px;">
                                     <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
-                                        <div class="server-info" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                                        <div class="server-info" fxLayout="row" fxLayoutGap="10px"
+                                            fxLayoutAlign="center center">
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-server" width="24" height="24"
@@ -63,7 +94,8 @@
                                                 <span>30.34%</span>
                                             </div>
                                         </div>
-                                        <div class="server-info" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                                        <div class="server-info" fxLayout="row" fxLayoutGap="10px"
+                                            fxLayoutAlign="center center">
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     class="icon icon-tabler icon-tabler-device-desktop-analytics"
@@ -86,7 +118,8 @@
                                                 <span>107mb</span>
                                             </div>
                                         </div>
-                                        <div class="server-info" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                                        <div class="server-info" fxLayout="row" fxLayoutGap="10px"
+                                            fxLayoutAlign="center center">
                                             <!-- uptime -->
                                             <div>
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -118,11 +151,14 @@
                                 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between"
                                     style="padding-left: 10px;padding-right: 10px;">
                                     <div class="status">
-                                        <span class="status-container active-status" [ngClass]="{'active-status':server.server_status == 'online','offline-status':server.server_status == 'offline'}">{{server.server_status | lowercase}}</span>
+                                        <span class="status-container active-status"
+                                            [ngClass]="{'active-status':server.server_status == 'online','offline-status':server.server_status == 'offline'}">{{server.server_status
+                                            | lowercase}}</span>
                                     </div>
                                     <div fxLayout="row" fxLayoutGap="10px">
-                                        <button mat-button color="warn">Delete</button>
-                                        <button mat-raised-button color="connect" (click)="connectToServer(server)">Connect</button>
+                                        <button mat-button color="warn" (click)="deleteServer(server)">Delete</button>
+                                        <button mat-raised-button color="connect"
+                                            (click)="connectToServer(server)">Connect</button>
                                     </div>
                                 </div>
 

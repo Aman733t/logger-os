@@ -15,7 +15,7 @@ import { ApiService } from '../services/api.service';
 })
 export class LayoutsComponent {
   public queryParams:any;
-  public username: any = 'Admin';
+  public username: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private _snackBar: MatSnackBar, public dialog: MatDialog){
 
@@ -28,7 +28,18 @@ export class LayoutsComponent {
       // } else {
       //   this.router.navigate(['/']);
       // }
+      if(localStorage.getItem('logger_user_name')){
+        this.username = localStorage.getItem('logger_user_name')
+      } else {
+        localStorage.clear();
+        this.router.navigate(['/'])
+      }
     });
+  }
+
+  logOut(){
+    localStorage.clear();
+    this.router.navigate(['/'])
   }
 
   home(){
