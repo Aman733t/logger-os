@@ -45,6 +45,12 @@ export class ApiService {
       return this.http.get(this.baseUrl + 'getServerInfo',{headers:this.getHeaders()});
     }
   }
+  
+  saveServerInfo(serverInfo:any){
+    return this.http.post(this.baseUrl + 'serverInfo',{serverInfo},{headers:this.getHeaders()}).pipe(tap(()=>{
+      this._refreshNeeded.next();
+    }));
+  }
 
   getServices(baseUrl:any){
     return this.http.get(baseUrl+'getRunningServices',{headers:this.getHeaders()});

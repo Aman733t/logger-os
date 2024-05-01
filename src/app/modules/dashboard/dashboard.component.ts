@@ -34,13 +34,23 @@ export class DashboardComponent {
     });
   }
 
+
+  refresh(){
+    this.api.refreshNeeded().subscribe((response) => {
+      setTimeout(() => {
+        this.getServerInfo();
+      }, 200)
+    })
+  }
+
   getServerInfo(){
-    if(localStorage.getItem('server_info')){
-      console.log('called..')
-      let hostInfo:any = localStorage.getItem('server_info');
-      let serverInfo:any = JSON.parse(hostInfo);
-      this.serversList.push(serverInfo);
-    }
+    this.api.getServerInfo(null).subscribe((response:any)=>{
+      if(response['code'] == 1){
+        this.serversList = [...response['result']]
+      } else {
+        this._snackBar.open(response['msg'],'OK');
+      }
+    })
   }
 
   checkConnection(){
@@ -56,27 +66,21 @@ export class DashboardComponent {
   }
 
   deleteServer(server:any){
-    console.log(server);
-    let id = server.id;
-    let serverdb:any = localStorage.getItem('server_info');
-    let db = JSON.parse(serverdb);
-    db.forEach((list:any)=>{
-      console.log(list);
-    })
+
   }
 
 
   saveInstance(){
-    let serverArr = [];
-    this.hostObj.id = this.serversList.length ? this.serversList.length + 1 : 1
-    serverArr.push(this.hostObj)
-    localStorage.setItem('server_info',JSON.stringify(this.hostObj));
-    this.hostObj = {};
-    this.drawer.toggle();
+    if(Object.keys(this.hostObj).length > 0){
+      this.api.saveServerInfo(this.hostObj).subscribe((response:any)=>{
+        if(response['code'] != 1){
+          this._snackBar.open(response['msg'],'OK');
+        }
+      })
+    }
   }
 
   connectToServer(server: any) {
-    console.log(server);
     this.router.navigate(['/logger/'],{ queryParams: { serverid:server.id } })
   }
 
