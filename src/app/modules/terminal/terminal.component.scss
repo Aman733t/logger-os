@@ -1,12 +1,224 @@
-main {
-    background-color: #000;
+.main {
     padding:10px;
+    // overflow: hidden;
+}
+
+mat-card{
+    border-radius: 1rem;
+}
+
+#instance-name{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#instance-log-path{
+    font-size: 13px;
+    font-weight: 400;
 }
 
 .menu-button {
     z-index: 99999;
     border-radius: 100% !important;
     position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    top: 3.8rem;
+    right: 36.8rem;
 }
+
+.mat-dark {
+    background-color: #000;
+    color: #fff;
+}
+
+.custom-card-center {
+    position: relative;
+    background-color: #DCDCDC;
+    display: flex;
+    flex-direction: column;
+    background-image: url('https://salesfactory.in/downloads/img/wa/bg-chat-dark.png');
+}
+
+.chat-container{
+    position: relative;
+    top: 5px;
+}
+
+.chat-preview-from {
+    width: 35px;
+    height: 35px;
+    float: left;
+    border-radius: 50%;
+    background-color: #00a884;
+    text-align: center;
+    line-height: 35px;
+    font-size: 15px;
+    position: relative;
+    top: 5px;
+    overflow: hidden;
+    color: #eee;
+}
+
+.chat-preview-fromright {
+    width: 35px;
+    height: 35px;
+    float: right;
+    border-radius: 50%;
+    background-color: #00a884;
+    text-align: center;
+    line-height: 35px;
+    font-size: 15px;
+    position: relative;
+    top: 5px;
+    overflow: hidden;
+    color: #eee;
+}
+
+.chat-preview-messageright {
+    // direction: rtl;
+    text-align: right;
+    width: auto;
+    position: relative;
+    top: 0;
+    left: -10px;
+    float: right;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    background-color: #00a884;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 5px solid #00a884;
+    max-width: calc(100% - 49px);
+    margin-bottom: 10px;
+    border-color: #00a884 transparent transparent;
+
+    img{
+        height: 40vh;
+    }
+
+}
+
+.chat-preview-messageright:after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: -12px;
+    border: 5px solid #00a884;
+    border-right-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.chat-preview-message {
+    // width: auto;
+    margin-bottom: 10px;
+    position: relative;
+    top: 0;
+    left: 10px;
+    float: left;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    background-color: #FAFAFA;
+    color: #3d404e;
+    border-radius: 5px;
+    border: 5px solid #FAFAFA;
+    max-width: calc(100% - 49px);
+    border-color: #FAFAFA transparent transparent;
+
+    img{
+        height: 40vh;
+    }
+}
+
+.chat-preview-message:after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -13px;
+    border: 5px solid #FAFAFA;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+
+.text-field-box{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    textarea{
+        padding-left: 12px;
+        letter-spacing: 0.3px;
+    }
+
+    :disabled{
+        background-color: #CDCDCD;
+        color: black;
+        font-weight: 800;
+    }
+}
+
+.text-field-input{
+    border-color: #000000;
+    border-style: solid;
+    border-width: 1.9px;
+    background-clip: padding-box;
+    border-radius: 8px;
+    width: 91%;
+    height: 35px;
+}
+
+
+
+
+
+// .main {
+//     padding: 10px;
+//     background-color: black;
+//     overflow: hidden; /* Hide scrollbars */
+//     // min-height: 100vh;
+// }
+
+// mat-card{
+//     border-radius: 10px;
+// }
+
+// .filter-container{
+//     overflow: hidden; /* Hide scrollbars */
+// }
+
+// .footer {
+//     position: fixed;
+//     bottom: 0;
+//     width: 100%;
+//     height: 50px;
+//     margin: 0;
+//     padding: 8px;
+//     background: #f1f3f4;
+//     left: 0px;
+// }
+
+// .footer-icon {
+//     img {
+//         width: 45px;
+//         height: 45px;
+//     }
+// }
+
+// #server-name{
+//     font-size: 18px;
+//     font-weight: 500;
+// }
+
+// #server-host{
+//     font-size: 14px;
+//     font-weight: 400;
+// }
+
+// .xterm .xterm-viewport{
+//     overflow-y: hidden !important;    
+// }
+
+// .mat-dark {
+//     background-color: #0d0d0d;
+//     color: #fff;
+// }

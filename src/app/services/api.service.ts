@@ -7,7 +7,7 @@ import { Subject, tap } from 'rxjs';
 })
 export class ApiService {
   public headers:HttpHeaders = new HttpHeaders()
-  public baseUrl:string = 'http://localhost:1337/api/';
+  public baseUrl:string = 'http://localhost:1777/api/';
   private _refreshNeeded = new Subject<void>();
 
   constructor(private http:HttpClient) { }
@@ -38,16 +38,24 @@ export class ApiService {
     return this.http.post(this.baseUrl + 'getUserLogin',{user_email:user_email,user_password:user_password})
   }
 
-  getServices(){
-    return this.http.get(this.baseUrl+'getRunningServices',{headers:this.getHeaders()});
+  getServerInfo(id:any){
+    if(id){
+      return this.http.get(this.baseUrl + `getServerInfo?id=${id}`,{headers:this.getHeaders()});
+    } else {
+      return this.http.get(this.baseUrl + 'getServerInfo',{headers:this.getHeaders()});
+    }
   }
 
-  getLogger(log:any){
-    return this.http.post(this.baseUrl+'getLogger',{log},{headers:this.getHeaders()});
+  getServices(baseUrl:any){
+    return this.http.get(baseUrl+'getRunningServices',{headers:this.getHeaders()});
   }
 
-  loggerAction(action:any,id:any){
-    return this.http.post(this.baseUrl+'loggerAction',{'action':action,'id':id},{headers:this.getHeaders()}).pipe(tap(()=>{
+  getLogger(baseUrl:any,log:any){
+    return this.http.post(baseUrl+'getLogger',{log},{headers:this.getHeaders()});
+  }
+
+  loggerAction(baseUrl:any,action:any,id:any){
+    return this.http.post(baseUrl+'loggerAction',{'action':action,'id':id},{headers:this.getHeaders()}).pipe(tap(()=>{
       this._refreshNeeded.next();
     }));
   }

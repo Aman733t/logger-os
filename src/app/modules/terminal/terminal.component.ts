@@ -17,10 +17,15 @@ import { FitAddon } from 'xterm-addon-fit';
 })
 export class TerminalComponent {
   public queryParams:any;
-  public term: any = new Terminal({ cursorBlink: true,rows:38,cols:100});
+  public term: any = new Terminal({ cursorBlink: true,rows:30,cols:100});
   public fitAddon: any = new FitAddon();
   public offset:any = 1;
-  public instance:any;
+  public messageArr: any = [{
+    "type": "sent",
+    "user": "bot",
+    "body": "Hello",
+    "img":""
+  }];
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private _snackBar: MatSnackBar, public dialog: MatDialog){
     
   }
@@ -40,29 +45,40 @@ export class TerminalComponent {
   }
 
   initSHELL() {
-    if(sessionStorage.getItem('log_'+this.queryParams.id)){
-      this.offset = 1;
-      let info:any = sessionStorage.getItem('log_'+this.queryParams.id);
-      this.instance = JSON.parse(info);
-      let attID = "terminal_"+this.queryParams.id;
-      this.term.open(document.getElementById(attID));
-      this.term.loadAddon(this.fitAddon);
-      this.fitAddon.fit();
-      this.getLogger();
-      this.term.onKey((keyPress:any)=>{
-        if(keyPress['key'] == '\r'){
-          this.term.writeln(keyPress['key'])
-        }
-      })
-    }
+    this.offset = 1;
+    let attID = "terminal_"+this.queryParams.processid;
+    this.term.open(document.getElementById(attID));
+    this.term.loadAddon(this.fitAddon);
+    this.fitAddon.fit();
+    this.getLogger();
+    this.term.onKey((keyPress:any)=>{
+      if(keyPress['key'] == '\r'){
+        this.term.writeln(keyPress['key'])
+      }
+    })
   }
 
   getLogger(){
-    this.api.getLogger({file_path:this.instance[this.queryParams.type],offset:this.offset}).subscribe((response:any)=>{
+    console.log(this.queryParams);
+    let log:any = {
+      file_path:this.queryParams[this.queryParams.type],
+      offset:this.offset
+    }
+    let baseUrl = this.queryParams.baseurl;
+    this.api.getLogger(baseUrl,log).subscribe((response:any)=>{
       if(response['lines']){
         let lines = response['lines'].split('\n');
         lines.forEach((line:any) => this.term.writeln(line));
       }
+    })
+  }
+
+  processAction(action:any){
+    let baseUrl = this.queryParams.baseurl;
+    let processId = this.queryParams.processid;
+    this.api.loggerAction(baseUrl,action,processId).subscribe((response:any)=>{
+      console.log(response);
+      this.getLogger();
     })
   }
 

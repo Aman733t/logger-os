@@ -73,3 +73,65 @@ mat-toolbar {
 #sf-title:hover{
     cursor: pointer;
 }
+
+
+::ng-deep {
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #717171;
+        border-radius: 5px;
+    }
+
+    .mat-drawer-inner-container::-webkit-scrollbar-thumb {
+        background-color: #c4c4c4;
+
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #1e88e5;
+    }
+
+    .mat-flat-button.mat-primary,
+    .mat-raised-button.mat-primary,
+    .mat-fab.mat-primary,
+    .mat-mini-fab.mat-primary {
+        background-color: #1e88e5;
+    }
+
+    .navListClose {
+        width: 60px;
+    }
+
+    .navListOpen {
+        width: 200px;
+    }
+
+    .mat-list-base .mat-list-item.mat-list-item-with-avatar {
+        font-size: 15px;
+        height: auto !important;
+        color: #000;
+
+        .mat-list-icon {
+            width: 18px;
+            height: 18px;
+            font-size: 18px;
+        }
+
+        .mat-list-item-content {
+            padding: 10px 15px;
+
+            .mat-list-text {
+                padding-left: 10px !important;
+            }
+        }
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+}

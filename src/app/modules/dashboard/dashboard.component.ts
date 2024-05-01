@@ -77,7 +77,7 @@ export class DashboardComponent {
 
   connectToServer(server: any) {
     console.log(server);
-    this.router.navigate(['/logger/'],{ queryParams: { id:server.id } })
+    this.router.navigate(['/logger/'],{ queryParams: { serverid:server.id } })
   }
 
 }
