@@ -1,35 +1,3 @@
-<!-- <main>
-    <div id="terminal_{{queryParams.processid}}"></div>
-    <button mat-fab color="dark" matTooltip="sync" class="menu-button" (click)="getLogger()">
-        <mat-icon>sync</mat-icon>
-    </button>
-</main> -->
-
-<!-- <div fxLayout="column" class="main" fxLayout.xs="column" fxLayoutGap="10px">
-    <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
-        <div fxFlex="120%">
-            <div id="terminal_{{queryParams.processid}}"></div>
-        </div>
-
-    </div>
-    <footer class="footer">
-        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-between">
-            <div fxLayout="row" fxLayoutGap="10px">
-                <div class="footer-icon">
-                    <img src="https://salesfactory.in/downloads/img/server.png">
-                </div>
-                <div class="css-1qoi5z5" fxLayout="column" fxLayoutGap="5px" style="position: relative; top:2px">
-                    <span id="server-name">{{queryParams.name}}</span>
-                    <span id="server-host">{{queryParams[queryParams.type]}}</span>
-                </div>
-            </div>
-            <button mat-raised-button color="dark" matTooltip="sync" (click)="getLogger()">
-                <mat-icon>sync</mat-icon>
-            </button>
-        </div>
-    </footer>
-</div> -->
-
 <div fxLayout="column" class="main" fxLayoutGap="10px">
     <div fxLayout="row" fxLayoutGap="10px" fxLayout.xs="column">
         <div fxFlex="60%">
@@ -57,24 +25,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="custom-card-center" style="height: 100%; overflow-y: auto;">
-                    <div class="chat-container">
-                        <div class="chat-box" fxLayout="column">
-                            <div class="content_{{message.type}}" *ngFor="let message of messageArr">
-                                <div *ngIf="message.type == 'receive'">
-                                    <div class="chat-preview-message">
-                                        {{message.body}}
-                                    </div>
-                                </div>
+                <div class="custom-card-center" style="height: 90%; overflow-y: auto;">
+                    <div class="command-content" *ngFor="let message of messageArr.slice().reverse();">
+                        <div class="command-history-content" *ngIf="message.type == 'command_sent'">
+                            <div class="command-preview-message">
+                                <span>{{message.body}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutGap="5px" class="text-field-box">
-                    <textarea type="text" placeholder="Enter Commands" class="text-field-input"></textarea>
-                    <button mat-mini-fab aria-label="Example icon button with a home icon" color="search-btn">
-                        <mat-icon>send</mat-icon>
-                    </button>
+                    <textarea type="text" placeholder="Enter Commands" class="text-field-input" [(ngModel)]="command" (keydown.enter)="sendCommand()"></textarea>
                 </div>
             </mat-card>
         </div>

@@ -66,5 +66,8 @@ export class ApiService {
     }));
   }
   
+  executeCommands(baseUrl:any,command:any){
+    return this.http.post(baseUrl+'executeCommands',{command:command},{headers:this.getHeaders()})
+  }
 
 }

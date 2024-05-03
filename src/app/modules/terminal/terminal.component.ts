@@ -20,12 +20,8 @@ export class TerminalComponent {
   public term: any = new Terminal({ cursorBlink: true,rows:30,cols:100});
   public fitAddon: any = new FitAddon();
   public offset:any = 1;
-  public messageArr: any = [{
-    "type": "sent",
-    "user": "bot",
-    "body": "Hello",
-    "img":""
-  }];
+  public messageArr: any = [];
+  public command:any;
   constructor(private router: Router, private route: ActivatedRoute, private api: ApiService, private _snackBar: MatSnackBar, public dialog: MatDialog){
     
   }
@@ -86,5 +82,19 @@ export class TerminalComponent {
     this._snackBar.open(message, action, {
       duration: 2000
     });
+  }
+
+  sendCommand(){
+    let baseUrl = this.queryParams.baseurl;
+    this.api.executeCommands(baseUrl,this.command).subscribe((response:any)=>{
+      let lines = response.split('\n');
+      lines.forEach((line:any) => this.term.writeln(line));
+      this.messageArr.push({
+        type:'command_sent',
+        body:this.command,
+        user:'aman'
+      })
+      this.command = null;
+    })
   }
 }
